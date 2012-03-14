@@ -1,0 +1,32 @@
+TARGET		:=	nessy-linux
+TARGETDIR   	:=  	executables
+BUILD		:=	build_linux
+SOURCES := $(wildcard src/*.cpp)
+INCLUDES	:=	src
+
+CFLAGS = -Wall -g `sdl-config --cflags`
+CXXFLAGS	= $(CFLAGS)
+LDFLAGS=`sdl-config --libs` 
+
+LIBS	:= -lSDL -lSDL_mixer -lSDL_image
+
+SOURCES := $(wildcard src/*.cpp) 
+OBJECTS := $(SOURCES:.cpp=.o)
+
+ifeq ($(strip $(CPPFILES)),)
+	LD	:=	$(CC)
+else
+	LD	:=	$(CXX)
+endif
+
+OUTPUT	:= $(CURDIR)/$(TARGETDIR)/$(TARGET)
+
+$(OUTPUT): $(OBJECTS)
+	$(LD) $(OBJECTS) $(CFLAGS) $(LDFLAGS) $(LIBS) $(OBJECTS) -o $@ 
+
+.cpp.o:
+	$(LD) $(CFLAGS) -c -o $@ $<
+ 
+clean:
+	rm $(OBJECTS) $(TARGET)
+#----------------------------------------------------------------------------------------------------------- 
