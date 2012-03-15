@@ -8,7 +8,7 @@ CFLAGS = -Wall -g `sdl-config --cflags`
 CXXFLAGS	= $(CFLAGS)
 LDFLAGS=`sdl-config --libs` 
 
-LIBS	:= libstdc++ -lSDL -lSDL_mixer -lSDL_image
+LIBS	:= -libstdc++ -lSDL -lSDL_mixer -lSDL_image
 
 SOURCES := $(wildcard src/*.cpp) 
 OBJECTS := $(SOURCES:.cpp=.o)
