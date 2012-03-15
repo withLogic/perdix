@@ -8,7 +8,7 @@ CFLAGS = -Wall -g `sdl-config --cflags`
 CXXFLAGS	= $(CFLAGS)
 LDFLAGS=`sdl-config --libs` 
 
-LIBS	:= -lSDL -lSDL_mixer -lSDL_image
+LIBS	:= libstdc++ -lSDL -lSDL_mixer -lSDL_image
 
 SOURCES := $(wildcard src/*.cpp) 
 OBJECTS := $(SOURCES:.cpp=.o)
@@ -22,7 +22,7 @@ endif
 OUTPUT	:= $(CURDIR)/$(TARGETDIR)/$(TARGET)
 
 $(OUTPUT): $(OBJECTS)
-	$(LD) $(OBJECTS) $(CFLAGS) $(LDFLAGS) $(LIBS) $(OBJECTS) -o $@ 
+	$(LD) $(OBJECTS) $(CFLAGS) $(LDFLAGS) $(LIBS) -o $@ 
 
 .cpp.o:
 	$(LD) $(CFLAGS) -c -o $@ $<
