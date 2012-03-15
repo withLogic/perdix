@@ -1,9 +1,23 @@
+/*
+==================================================================
+
+						Game - State - SecondState
+
+==================================================================
+*/
+
 #include "core.h"
 #include "core_state.h"
 #include "SecondState.h"
 
-SecondState SecondState::m_IntroState;
+SecondState SecondState::m_SecondState;
 
+///////////////////////////////////////////////////////////////
+//
+// Init(perdix::core* game)
+//		Initialize the state. It passes a pointer of the game engine to use.
+//
+///////////////////////////////////////////////////////////////
 void SecondState::Init(perdix::core* game)
 {
 	this->game = game;
@@ -28,34 +42,68 @@ void SecondState::Init(perdix::core* game)
 
 };
 
-void SecondState::Cleanup()
+///////////////////////////////////////////////////////////////
+//
+// Cleanup()
+//		Cleanup function. Deletes all of the created resources.
+//
+///////////////////////////////////////////////////////////////
+void SecondState::CleanUp()
 {
 SDL_FreeSurface(this->_image);
 	#ifdef _DEBUG
-		this->game->debugPrint("SecondState::Init(): Killing the State.", MSG_DIAG);
+		this->game->debugPrint("SecondState::CleanUp(): Killing the State.", MSG_DIAG);
 	#endif
 };
 
+///////////////////////////////////////////////////////////////
+//
+// Pause()
+//		Pause the state. When the state is paused, nothing is processed
+//		When the state is paused, the following will occur.
+//
+///////////////////////////////////////////////////////////////
 void SecondState::Pause()
 {
 
 };
 
+///////////////////////////////////////////////////////////////
+//
+// Resume()
+//			Unpauses the state. When the state is unpaused, the follownig is processed
+//
+///////////////////////////////////////////////////////////////
 void SecondState::Resume()
 {
 
 };
 
+///////////////////////////////////////////////////////////////
+//
+// HandleEvents()
+//
+///////////////////////////////////////////////////////////////
 void SecondState::HandleEvents()
 {
 
 };
 
+///////////////////////////////////////////////////////////////
+//
+// Update()
+//
+///////////////////////////////////////////////////////////////
 void SecondState::Update() 
 {
 
 };
 
+///////////////////////////////////////////////////////////////
+//
+// Draw()
+//
+///////////////////////////////////////////////////////////////
 void SecondState::Draw() 
 {
 

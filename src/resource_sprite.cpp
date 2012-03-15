@@ -1,23 +1,26 @@
 /*
 ==================================================================
 
-						Perdix - Core State Class
+						Perdix - Resource: Sprite Class
 
 ==================================================================
 */
 
-#include "core.h"
+#ifndef RESOURCE_SPRITE_H
+#define RESOURCE_SPRITE_H
 
 namespace perdix
 {
 	///////////////////////////////////////////////////////////////
 	//
-	// ChangeState(core* game, core_state* state)
-	//		Tell the game to change the state to the new state. 
-	//		This function is really not needed, to be honest.
+	// Class sprite
+	//		Represents all of the images in the engine. 
 	//
 	///////////////////////////////////////////////////////////////
-	void core_state::ChangeState(core* game, core_state* state) {
-		game->changeState(state);
+	class sprite : public core_resource {
+	
 	}
+
 }
+
+#endif

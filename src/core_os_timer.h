@@ -1,3 +1,17 @@
+/*
+==================================================================
+
+						Perdix - Core OS Timer Header
+
+==================================================================
+*/
+
+// -- NOTE --
+// this timer code taken from Advanced2D game engine.
+// designed for using Windows for it's time.
+#ifdef _DEBUG
+#ifdef WIN32
+
 #ifndef TIMER_H
 #define TIMER_H 
 
@@ -29,4 +43,7 @@ namespace perdix {
 
 };
 
+#endif
+
+#endif
 #endif

@@ -1,3 +1,11 @@
+/*
+==================================================================
+
+						Perdix - Core State Class Header
+
+==================================================================
+*/
+
 #ifndef CORE_STATE_H
 #define CORE_STATE_H
 
@@ -7,11 +15,17 @@ namespace perdix
 {
 	class core; // forward declaration for the core object :-)
 
+	///////////////////////////////////////////////////////////////
+	//
+	// Class core_state
+	//		Parent class for all of the states in the game. 
+	//
+	///////////////////////////////////////////////////////////////
 	class core_state
 	{
 	public:
 		virtual void Init(core* game) = 0;
-		virtual void Cleanup() = 0;
+		virtual void CleanUp() = 0;
 
 		virtual void Pause() = 0;
 		virtual void Resume() = 0;

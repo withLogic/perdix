@@ -1,15 +1,22 @@
+/*
+==================================================================
+
+						Game - State - SecondState Header
+
+==================================================================
+*/
+
 #ifndef SECONDSTATE_H
 #define SECONDSTATE_H
 
 #include "core.h"
 #include "core_state.h"
 
-
 class SecondState : public perdix::core_state
 {
 public:
 	void Init(perdix::core* game);
-	void Cleanup();
+	void CleanUp();
 
 	void Pause();
 	void Resume();
@@ -19,14 +26,14 @@ public:
 	void Draw();
 
 	static SecondState* Instance() {
-		return &m_IntroState;
+		return &m_SecondState;
 	}
 
 protected:
 	SecondState() { }
 
 private:
-	static SecondState m_IntroState;
+	static SecondState m_SecondState;
 
 	ACTOR_IMAGE *temp;
 	ACTOR_IMAGE *_image;

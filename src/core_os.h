@@ -1,3 +1,11 @@
+/*
+==================================================================
+
+						Perdix - Core OS Header
+
+==================================================================
+*/
+
 #ifndef CORE_OS_H
 #define CORE_OS_H
 
@@ -18,6 +26,15 @@
 
 namespace perdix
 {
+	///////////////////////////////////////////////////////////////
+	//
+	// Class core_os
+	//		The OS core. This handles all of the OS subsystems
+	//		for the engine. This includes stuff like SDL, DirectX, ect.
+	//		Also, window management and the like. (for example, pausing
+	//		the current state whenever the game loses focus)
+	//
+	///////////////////////////////////////////////////////////////
 	class core_os {
 		private:
 			#ifdef _DEBUG

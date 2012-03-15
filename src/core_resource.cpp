@@ -1,23 +1,26 @@
 /*
 ==================================================================
 
-						Perdix - Core State Class
+						Perdix - Resource Class
 
 ==================================================================
 */
 
-#include "core.h"
+#ifndef CORE_RESOURCE_H
+#define CORE_RESOURCE_H
 
 namespace perdix
 {
 	///////////////////////////////////////////////////////////////
 	//
-	// ChangeState(core* game, core_state* state)
-	//		Tell the game to change the state to the new state. 
-	//		This function is really not needed, to be honest.
+	// Class core_resource
+	//		Parent class for all of the resources within the engine. 
 	//
 	///////////////////////////////////////////////////////////////
-	void core_state::ChangeState(core* game, core_state* state) {
-		game->changeState(state);
+	class core_resource {
+	
 	}
+
 }
+
+#endif

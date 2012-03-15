@@ -1,3 +1,11 @@
+/*
+==================================================================
+
+						Perdix - Core Graphics Header
+
+==================================================================
+*/
+
 #ifndef CORE_GRAPHICS_H
 #define CORE_GRAPHICS_H
 
@@ -14,6 +22,13 @@
 
 namespace perdix
 {
+	///////////////////////////////////////////////////////////////
+	//
+	// Class core_graphics
+	//		The graphics core. This handles all of the graphics subsystems
+	//		for the engine. This includes stuff like SDL, DirectX, ect.
+	//
+	///////////////////////////////////////////////////////////////
 	class core_graphics {
 		private:
 			#ifdef _DEBUG

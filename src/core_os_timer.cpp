@@ -1,6 +1,18 @@
-#include "core.h"
+/*
+==================================================================
+
+						Perdix - Core OS Timer
+
+==================================================================
+*/
+
+// -- NOTE --
 // this timer code taken from Advanced2D game engine.
 // designed for using Windows for it's time.
+
+#ifdef TIMER_H
+
+#include "core.h"
 
 namespace perdix {
 
@@ -46,3 +58,5 @@ namespace perdix {
 	}
 
 }
+
+#endif

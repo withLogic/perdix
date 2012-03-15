@@ -1,3 +1,11 @@
+/*
+==================================================================
+
+						Perdix - Core Class Header
+
+==================================================================
+*/
+
 #ifndef CORE_H
 #define CORE_H
 
@@ -27,15 +35,15 @@
 #define VERSION_MINOR 0
 #define VERSION_REV 1
 
-// create the external functions. These will link to the "game"
-/*extern bool perdix_gameover;
-extern bool perdix_preload();
-extern bool perdix_init();
-extern void perdix_update();
-extern void perdix_end();*/
-
 namespace perdix
 {
+	///////////////////////////////////////////////////////////////
+	//
+	// Class core
+	//		Primary game engine core. All of the other cores and the 
+	//		rest of the game engine components call this file.
+	//
+	///////////////////////////////////////////////////////////////
 	class core{
 	private:
 		// what is the engine doing?
@@ -46,7 +54,9 @@ namespace perdix
 		core_os* os_core;
 		core_graphics* graphics_core;
 		CORE_GFX_SCREEN* screen;
-		timer* timer;
+		
+		// Not even using this now, so ...
+		//timer* timer;
 		
 		#ifdef _DEBUG
 			CConsole *console;

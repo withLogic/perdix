@@ -1,10 +1,26 @@
-#include "core.h"
+/*
+==================================================================
 
+						Perdix - Core Class
+
+==================================================================
+*/
+
+// -- NOTE --
 // where should the timer class be? It's dependent on the OS
 // and the libraries, but it can be abstracted from the core?
 
+#include "core.h"
+
 namespace perdix
 {
+	///////////////////////////////////////////////////////////////
+	//
+	// core()
+	//		Constructor for the core class. Sets up the cores and
+	//		main variables
+	//
+	///////////////////////////////////////////////////////////////
 	core::core(){
 		#ifdef _DEBUG
 			this->console = new CConsole;
@@ -16,6 +32,13 @@ namespace perdix
 		this->os_core = new core_os;
 	}
 
+	///////////////////////////////////////////////////////////////
+	//
+	// ~core()
+	//		Destructor for the core class. Calls the core's CleanUp
+	//		function, and calls the other core's cleanup functions.
+	//
+	///////////////////////////////////////////////////////////////
 	core::~core(){
 		this->cleanUp();
 
@@ -27,6 +50,12 @@ namespace perdix
 		delete this->os_core;
 	}
 
+	///////////////////////////////////////////////////////////////
+	//
+	// init(int width, int height, int depth, bool fullscreen)
+	//		The initialization function for the core. 
+	//
+	///////////////////////////////////////////////////////////////
 	bool core::init(int width, int height, int depth, bool fullscreen){
 		#ifdef _DEBUG
 			this->console->init();
@@ -59,6 +88,12 @@ namespace perdix
 		}
 	}
 
+	///////////////////////////////////////////////////////////////
+	//
+	// init(int width, int height, int depth, bool fullscreen)
+	//		The initialization function for the core. 
+	//
+	///////////////////////////////////////////////////////////////
 	bool core::init(bool fullscreen){
 		#ifdef _DEBUG
 			char buffForAppInfo[100];
@@ -97,6 +132,12 @@ namespace perdix
 		}
 	}
 
+	///////////////////////////////////////////////////////////////
+	//
+	// cleanUp()
+	//		Calls the cleanUp function for all of the cores. 
+	//
+	///////////////////////////////////////////////////////////////
 	void core::cleanUp(){
 		#ifdef _DEBUG
 			this->console->cleanUp();
@@ -106,11 +147,17 @@ namespace perdix
 		this->graphics_core->cleanUp();
 	}
 
+	///////////////////////////////////////////////////////////////
+	//
+	// changeState(core_state* state)
+	//		Detroys the active state and replaces it with the new state 
+	//
+	///////////////////////////////////////////////////////////////
 	void core::changeState(core_state* state) 
 	{
 		// cleanup the current state
 		if ( !states.empty() ) {
-			states.back()->Cleanup();
+			states.back()->CleanUp();
 			states.pop_back();
 		}
 
@@ -118,7 +165,13 @@ namespace perdix
 		states.push_back(state);
 		states.back()->Init(this);
 	};
-
+	
+	///////////////////////////////////////////////////////////////
+	//
+	// pushState(core_state* state)
+	//		Pauses the active state and activates the new state.
+	//
+	///////////////////////////////////////////////////////////////
 	void core::pushState(core_state* state)
 	{
 		// pause current state
@@ -131,11 +184,17 @@ namespace perdix
 		states.back()->Init(this);
 	};
 
+	///////////////////////////////////////////////////////////////
+	//
+	// popState(core_state* state)
+	//		Resumes the paused state and destroys the active state.
+	//
+	///////////////////////////////////////////////////////////////
 	void core::popState()
 	{
 		// cleanup the current state
 		if ( !states.empty() ) {
-			states.back()->Cleanup();
+			states.back()->CleanUp();
 			states.pop_back();
 		}
 
@@ -145,7 +204,12 @@ namespace perdix
 		}
 	};
 
-
+	///////////////////////////////////////////////////////////////
+	//
+	// update()
+	//		Tells the active state to call it's update function
+	//
+	///////////////////////////////////////////////////////////////
 	void core::update(){
 		// do nothing
 		states.back()->Draw();

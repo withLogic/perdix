@@ -1,11 +1,23 @@
-//#ifdef _DEBUG
-//#ifdef WIN32
+/*
+==================================================================
+
+						Core Debug Console Header
+
+==================================================================
+*/
+
+// -- NOTE --
+// This debug code taken from BlackFyre game engine.
+// Adapted into the Perdix engine.
+// http://core1.saintjoe.edu/wiki/Blackfyre
+
+#ifdef _DEBUG
+#ifdef WIN32
 
 #ifndef CCONSOLE_H
 #define CCONSOLE_H
 
 #include <sstream>
-
 #include <windows.h>
 
 #define BUFFERSIZE 256
@@ -43,5 +55,6 @@ private:
 };
 
 #endif
-//#endif
-//#endif
+
+#endif
+#endif

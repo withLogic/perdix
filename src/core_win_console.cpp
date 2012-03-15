@@ -1,9 +1,23 @@
+/*
+==================================================================
+
+						Perdix - Core Debug Console
+
+==================================================================
+*/
+
+// -- NOTE --
+// This debug code taken from BlackFyre game engine.
+// Adapted into the Perdix engine.
+// http://core1.saintjoe.edu/wiki/Blackfyre
+
 #include "core.h"
 
 #include <iostream>
 #include <iomanip>
 
 #ifdef CCONSOLE_H
+
 CConsole CConsole::Console;
 
 CConsole::CConsole() {

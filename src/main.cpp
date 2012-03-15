@@ -1,7 +1,25 @@
+/*
+==================================================================
+
+						Game - Main
+
+==================================================================
+*/
+
 #include "core.h"
+
+// -- NOTE --  
+// Move the states into a statemanager.h file.
+
 #include "IntroState.h"
 #include "SecondState.h"
 
+///////////////////////////////////////////////////////////////
+//
+// main(  int argc, char* args[] )
+//		The main function, this is where the magic starts.
+//
+///////////////////////////////////////////////////////////////
 int main( int argc, char* args[] ) 
 {
 	perdix::core PerdixGame;

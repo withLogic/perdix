@@ -1,9 +1,23 @@
+/*
+==================================================================
+
+						Game - State - IntroState
+
+==================================================================
+*/
+
 #include "core.h"
 #include "core_state.h"
 #include "IntroState.h"
 
 IntroState IntroState::m_IntroState;
 
+///////////////////////////////////////////////////////////////
+//
+// Init(perdix::core* game)
+//		Initialize the state. It passes a pointer of the game engine to use.
+//
+///////////////////////////////////////////////////////////////
 void IntroState::Init(perdix::core* game)
 {
 	this->game = game;
@@ -28,34 +42,68 @@ void IntroState::Init(perdix::core* game)
 
 };
 
-void IntroState::Cleanup()
+///////////////////////////////////////////////////////////////
+//
+// Cleanup()
+//		Cleanup function. Deletes all of the created resources.
+//
+///////////////////////////////////////////////////////////////
+void IntroState::CleanUp()
 {
 SDL_FreeSurface(this->_image);
 	#ifdef _DEBUG
-		this->game->debugPrint("IntroState::Init(): Killing the State.", MSG_DIAG);
+		this->game->debugPrint("IntroState::CleanUp(): Killing the State.", MSG_DIAG);
 	#endif
 };
 
+///////////////////////////////////////////////////////////////
+//
+// Pause()
+//		Pause the state. When the state is paused, nothing is processed
+//		When the state is paused, the following will occur.
+//
+///////////////////////////////////////////////////////////////
 void IntroState::Pause()
 {
 
 };
 
+///////////////////////////////////////////////////////////////
+//
+// Resume()
+//			Unpauses the state. When the state is unpaused, the follownig is processed
+//
+///////////////////////////////////////////////////////////////
 void IntroState::Resume()
 {
 
 };
 
+///////////////////////////////////////////////////////////////
+//
+// HandleEvents()
+//
+///////////////////////////////////////////////////////////////
 void IntroState::HandleEvents()
 {
 
 };
 
+///////////////////////////////////////////////////////////////
+//
+// Update()
+//
+///////////////////////////////////////////////////////////////
 void IntroState::Update() 
 {
 
 };
 
+///////////////////////////////////////////////////////////////
+//
+// Draw()
+//
+///////////////////////////////////////////////////////////////
 void IntroState::Draw() 
 {
 

@@ -1,3 +1,11 @@
+/*
+==================================================================
+
+						Game - State - IntroState Header
+
+==================================================================
+*/
+
 #ifndef INTROSTATE_H
 #define INTROSTATE_H
 
@@ -9,7 +17,7 @@ class IntroState : public perdix::core_state
 {
 public:
 	void Init(perdix::core* game);
-	void Cleanup();
+	void CleanUp();
 
 	void Pause();
 	void Resume();
@@ -21,6 +29,9 @@ public:
 	static IntroState* Instance() {
 		return &m_IntroState;
 	}
+
+	short int TileHeight;
+	short int TileWidth;
 
 protected:
 	IntroState() { }
