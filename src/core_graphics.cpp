@@ -47,7 +47,8 @@ namespace perdix
 	///////////////////////////////////////////////////////////////
 	CORE_GFX_SCREEN* core_graphics::init(int width, int height, int depth, bool fullscreen){
 		if (SDL_Init(SDL_INIT_VIDEO) < 0 ) return NULL;
-		
+		SDL_ShowCursor(SDL_DISABLE);
+
 		if(fullscreen){
 			this->flags ^= SDL_FULLSCREEN;
 			this->w_fullscreen = true;
@@ -81,7 +82,8 @@ namespace perdix
 		this->console->Print("core_graphics::init(): Start initialization.", MSG_DIAG);
 		
 		if (SDL_Init(SDL_INIT_VIDEO) < 0 ) return NULL;
-		
+		SDL_ShowCursor(SDL_DISABLE);
+
 		if(fullscreen){
 			this->flags ^= SDL_FULLSCREEN;
 			this->w_fullscreen = true;
@@ -133,11 +135,6 @@ namespace perdix
 	void core_graphics::SetTitle(char* title){
 		this->w_title = title;
 		SDL_WM_SetCaption(this->w_title, this->w_title);
-
-		#ifdef _DEBUG
-			this->console->Print("core_graphics::SetTitle(): The title of the window has been set.", MSG_DIAG);
-		#endif
-
 	}
 
 	///////////////////////////////////////////////////////////////

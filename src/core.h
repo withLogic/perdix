@@ -59,8 +59,12 @@ namespace perdix
 		core_graphics* graphics_core;
 		CORE_GFX_SCREEN* screen;
 		
-		// Not even using this now, so ...
-		//timer* timer;
+		timer coreTimer;
+		timer realTimer;
+		unsigned long frameCountCore;
+		unsigned long frameRateCore;
+		unsigned long frameCountReal;
+		unsigned long frameRateReal;
 		
 		#ifdef _DEBUG
 			CConsole *console;
@@ -95,6 +99,7 @@ namespace perdix
 		CORE_GFX_SCREEN* getScreen(){return this->screen;};
 		
 		char* getTitle(){return this->graphics_core->getTitle();}
+		void setTitle(char* title){this->graphics_core->SetTitle(title);};
 		bool getFullscreen(){return this->graphics_core->getFullscreen();}
 		void toggleFullscreen(){this->graphics_core->toggleFullScreen();}
 		int getWindowWidth(){return this->graphics_core->getWindowWidth();}

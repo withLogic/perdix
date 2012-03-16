@@ -112,15 +112,21 @@ void IntroState::Resume()
 ///////////////////////////////////////////////////////////////
 void IntroState::HandleEvents()
 {
-	SDL_Event event;
+	SDL_Event keyevent;
 
-	while(SDL_PollEvent(&event))
+	while(SDL_PollEvent(&keyevent))
 	{
-		switch (event.type)
+		switch (keyevent.type)
 		{
 			case SDL_QUIT:
 				game->quit();
 				break;
+			case SDL_KEYDOWN:
+				 switch(keyevent.key.keysym.sym){
+					case SDLK_ESCAPE:
+						this->game->quit();
+						break;
+				};
 		};
 	};
 
@@ -137,11 +143,12 @@ void IntroState::HandleEvents()
 ///////////////////////////////////////////////////////////////
 void IntroState::Update() 
 {
-	if(this->UpTick >= 20){
-		this->game->pushState( SecondState::Instance() );
-	}
 
-	this->UpTick++;
+	//if(this->UpTick >= 200){
+		//this->game->pushState( SecondState::Instance() );
+	//}
+	//this->UpTick++;
+	
 
 	#ifdef _DEBUG
 		this->game->debugPrint("IntroState::Update(): Updating the scene.", MSG_DIAG);
@@ -172,6 +179,9 @@ void IntroState::Draw()
 		}
 	}
 
+	_rect.x = 0;
+	_rect.y = 0;
+	SDL_BlitSurface(this->grass->getImage(), NULL, game->getScreen(), &_rect);
 
 	_rect2.x = 32;
 	_rect2.y = 32;

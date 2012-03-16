@@ -64,7 +64,7 @@ namespace perdix
 		this->console->Print("core_os::init(): Start initialization.", MSG_DIAG);
 
 		if (SDL_Init(SDL_INIT_TIMER) < 0 ) return false;
-		
+
 		// this is where it would we create the windows for non-SDL versions of the game. Should try this out. :-)
 		this->console->Print("core_os::init(): End initialization.", MSG_DIAG);
 		return true;

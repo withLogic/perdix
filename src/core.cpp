@@ -30,6 +30,11 @@ namespace perdix
 		this->paused = false;
 		this->graphics_core = new core_graphics;
 		this->os_core = new core_os;
+
+		frameCountCore = 0;
+		frameRateCore = 0;
+		frameCountReal = 0;
+		frameRateReal = 0;
 	}
 
 	///////////////////////////////////////////////////////////////
@@ -77,8 +82,7 @@ namespace perdix
 			}
 		#else
 			this->os_core->init();
-
-			if(this->screen = this->graphics_core->init(width, height, depth, fullscreen));
+			this->screen = this->graphics_core->init(width, height, depth, fullscreen);
 		#endif
 
 		this->graphics_core->SetTitle(APP_NAME);
@@ -123,8 +127,7 @@ namespace perdix
 			}
 		#else
 			this->os_core->init();
-
-			if(this->screen = this->graphics_core->init(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_DEPTH, fullscreen));
+			this->screen = this->graphics_core->init(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_DEPTH, fullscreen);
 		#endif
 		
 		this->graphics_core->SetTitle(APP_NAME);
@@ -253,7 +256,8 @@ namespace perdix
 	//
 	///////////////////////////////////////////////////////////////
 	void core::handleEvents(){
-		// do nothing
+		// -- NOTE --
+		// What do we need to do to let the engine handle its events.
 		states.back()->HandleEvents();
 	}
 
@@ -264,8 +268,31 @@ namespace perdix
 	//
 	///////////////////////////////////////////////////////////////
 	void core::update(){
-		// do nothing
+		static timer timedUpdate;
+
+		frameCountCore++;
+		if(this->coreTimer.stopwatch(999)){
+			frameRateCore = frameCountCore;
+			frameCountCore = 0;
+		}
+
 		states.back()->Update();
+
+		if(!timedUpdate.stopwatch(14)){
+			SDL_Delay(1);
+		} else {
+			frameCountReal++;
+			if(this->realTimer.stopwatch(999)){
+				frameRateReal = frameCountReal;
+				frameCountReal = 0;
+			};
+		};
+
+		char buff[100];
+		sprintf(buff, "%s - Real: %d Core: %d", "Perdix - ", frameRateReal, frameRateCore);
+
+		this->setTitle(buff);
+
 	}
 
 	///////////////////////////////////////////////////////////////

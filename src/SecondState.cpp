@@ -96,7 +96,7 @@ void SecondState::HandleEvents()
 ///////////////////////////////////////////////////////////////
 void SecondState::Update() 
 {
-	if(this->UpTick >= 20){
+	if(this->UpTick >= 250){
 		this->game->popState();
 	};
 

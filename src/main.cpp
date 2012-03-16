@@ -34,15 +34,7 @@ int main( int argc, char* args[] )
 	bool state = true;
 
 	while(PerdixGame.isRunning()){
-		if(state){
-			//PerdixGame.changeState( SecondState::Instance() );
-			state = false;
-		} else {
-			//PerdixGame.changeState( IntroState::Instance() );
-			state = true;
-		}
 
-		Sleep(450);
 		PerdixGame.handleEvents();
 		PerdixGame.update();
 		PerdixGame.draw();
