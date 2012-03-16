@@ -43,14 +43,16 @@ int main( int argc, char* args[] )
 			state = true;
 		}
 
-		//Sleep(450);
+		Sleep(450);
 		PerdixGame.handleEvents();
 		PerdixGame.update();
 		PerdixGame.draw();
 
 	}/*while*/
 
-	if(PerdixGame.cleanUp()){
-		return 0;
-	};
+	if(!PerdixGame.cleanUp()){
+		// do something to log whatever errors
+	}
+
+	return 0;
 }/*main*/

@@ -71,8 +71,10 @@ namespace perdix
 			this->os_core->init(this->console);
 			this->console->Print("core::init(): OS_CORE initialized",MSG_DIAG);
 
-			if(this->screen = this->graphics_core->init(width, height, depth, fullscreen, this->console));
-			this->console->Print("core::init(): GRAPHICS_CORE initialized",MSG_DIAG);
+			if(this->screen = this->graphics_core->init(width, height, depth, fullscreen, this->console))
+			{
+				this->console->Print("core::init(): GRAPHICS_CORE initialized",MSG_DIAG);
+			}
 		#else
 			this->os_core->init();
 
@@ -115,8 +117,10 @@ namespace perdix
 			this->os_core->init(this->console);
 			this->console->Print("core::init(): OS_CORE initialized",MSG_DIAG);
 
-			if(this->screen = this->graphics_core->init(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_DEPTH, fullscreen, this->console));
-			this->console->Print("core::init(): GRAPHICS_CORE initialized",MSG_DIAG);
+			if(this->screen = this->graphics_core->init(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_DEPTH, fullscreen, this->console))
+			{
+				this->console->Print("core::init(): GRAPHICS_CORE initialized",MSG_DIAG);
+			}
 		#else
 			this->os_core->init();
 
@@ -179,7 +183,7 @@ namespace perdix
 		};
 
 		// destroy the cores
-		//this->graphics_core->cleanUp();
+		this->graphics_core->cleanUp();
 		this->os_core->cleanUp();
 
 		return true;
