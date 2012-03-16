@@ -23,6 +23,9 @@
 #include "core_os_timer.h"
 #include "core_graphics.h"
 
+// other junk
+#include "resource_sprite.h"
+
 // defining the statics
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480

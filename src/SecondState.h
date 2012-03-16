@@ -35,13 +35,8 @@ protected:
 private:
 	static SecondState m_SecondState;
 
-	ACTOR_IMAGE *temp;
-	ACTOR_IMAGE *_image;
-	ACTOR_RECT _rect;
-	unsigned short _height;
-	unsigned short _width;
-
 	perdix::core* game;
+	perdix::sprite* water;
 };
 	
 #endif
