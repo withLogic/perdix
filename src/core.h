@@ -11,6 +11,7 @@
 
 //
 #include <vector>
+#include <string>
 
 // required files
 #ifdef _DEBUG
@@ -75,6 +76,8 @@ namespace perdix
 	
 		bool init(int width, int height, int depth, bool fullscreen);
 		bool init(bool fullscreen);
+
+		void handleArgs(int argc, char* args[]);
 
 		void cleanUp();
 	

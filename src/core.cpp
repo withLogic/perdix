@@ -134,6 +134,33 @@ namespace perdix
 
 	///////////////////////////////////////////////////////////////
 	//
+	// handleArgs(int argc, char* args[])
+	//		Handle any arguements given to it from the commandline or shortcut.
+	//		Currently, thats nothing.
+	//
+	///////////////////////////////////////////////////////////////
+	void core::handleArgs(int argc, char* args[]){
+		std::vector<std::string> argv(args, args + argc);
+		std::vector<std::string>::iterator it = argv.begin();
+
+		++it;
+
+		while (it != argv.end()){
+			if(*it == "--fullscreen" || *it == "-f")
+			{
+				//This will make the game start in fullscreen mode!
+			}
+			else if(*it == "--window" || *it == "-w")
+			{
+				//This will make the game start in windowed mode!
+			}
+			it++;
+		};
+
+	};
+
+	///////////////////////////////////////////////////////////////
+	//
 	// cleanUp()
 	//		Calls the cleanUp function for all of the cores. 
 	//
