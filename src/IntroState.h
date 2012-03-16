@@ -39,7 +39,10 @@ protected:
 private:
 	static IntroState m_IntroState;
 	perdix::core* game;
+
 	perdix::sprite* grass;
+	perdix::sprite* hero;
+	perdix::sprite* tree;
 };
 	
 #endif

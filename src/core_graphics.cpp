@@ -147,6 +147,6 @@ namespace perdix
 	//
 	///////////////////////////////////////////////////////////////
 	void core_graphics::cleanUp(){
-		delete this->screen;
+		
 	}
 }

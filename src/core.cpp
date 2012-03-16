@@ -142,7 +142,7 @@ namespace perdix
 	void core::handleArgs(int argc, char* args[]){
 		std::vector<std::string> argv(args, args + argc);
 		std::vector<std::string>::iterator it = argv.begin();
-
+		
 		++it;
 
 		while (it != argv.end()){
@@ -165,13 +165,24 @@ namespace perdix
 	//		Calls the cleanUp function for all of the cores. 
 	//
 	///////////////////////////////////////////////////////////////
-	void core::cleanUp(){
+	bool core::cleanUp(){
 		#ifdef _DEBUG
 			this->console->cleanUp();
 		#endif
 
+		// destroy the active state
+		// -- NOTE --
+		// should also look for a paused state and destroy it too...
+		if ( !states.empty() ) {
+			states.back()->CleanUp();
+			states.pop_back();
+		};
+
+		// destroy the cores
+		//this->graphics_core->cleanUp();
 		this->os_core->cleanUp();
-		this->graphics_core->cleanUp();
+
+		return true;
 	}
 
 	///////////////////////////////////////////////////////////////
@@ -233,12 +244,35 @@ namespace perdix
 
 	///////////////////////////////////////////////////////////////
 	//
+	// handleEvents()
+	//		Tells the active state to handle events.
+	//
+	///////////////////////////////////////////////////////////////
+	void core::handleEvents(){
+		// do nothing
+		states.back()->HandleEvents();
+	}
+
+	///////////////////////////////////////////////////////////////
+	//
 	// update()
 	//		Tells the active state to call it's update function
 	//
 	///////////////////////////////////////////////////////////////
 	void core::update(){
 		// do nothing
+		states.back()->Update();
+	}
+
+	///////////////////////////////////////////////////////////////
+	//
+	// draw()
+	//		Tells the active state to draw to the screen.
+	//
+	///////////////////////////////////////////////////////////////
+	void core::draw(){
+		// do nothing
 		states.back()->Draw();
 	}
+
 }

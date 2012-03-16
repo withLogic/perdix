@@ -23,6 +23,8 @@
 int main( int argc, char* args[] ) 
 {
 	perdix::core PerdixGame;
+	PerdixGame.handleArgs(argc, args);
+
 	if(PerdixGame.init(false) == false){return 0;};
 
 	PerdixGame.changeState( IntroState::Instance() );
@@ -34,16 +36,21 @@ int main( int argc, char* args[] )
 
 	while(PerdixGame.isRunning()){
 		if(state){
-			PerdixGame.changeState( SecondState::Instance() );
+			//PerdixGame.changeState( SecondState::Instance() );
 			state = false;
 		} else {
-			PerdixGame.changeState( IntroState::Instance() );
+			//PerdixGame.changeState( IntroState::Instance() );
 			state = true;
 		}
 
-		Sleep(450);
+		//Sleep(450);
+		PerdixGame.handleEvents();
 		PerdixGame.update();
+		PerdixGame.draw();
+
 	}/*while*/
 
-	return 0;
+	if(PerdixGame.cleanUp()){
+		return 0;
+	};
 }/*main*/

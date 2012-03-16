@@ -79,7 +79,7 @@ namespace perdix
 
 		void handleArgs(int argc, char* args[]);
 
-		void cleanUp();
+		bool cleanUp();
 	
 		bool isRunning(){return this->running;}
 		void setRunning(bool value){this->running = value;};
@@ -108,7 +108,9 @@ namespace perdix
 		void pushState(core_state* state);
 		void popState();
 
+		void handleEvents();
 		void update();
+		void draw();
 	};
 };
 
