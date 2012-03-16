@@ -12,7 +12,6 @@
 // Move the states into a statemanager.h file.
 
 #include "IntroState.h"
-#include "SecondState.h"
 
 ///////////////////////////////////////////////////////////////
 //

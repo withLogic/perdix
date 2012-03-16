@@ -30,9 +30,6 @@ public:
 		return &m_IntroState;
 	}
 
-	short int TileHeight;
-	short int TileWidth;
-
 protected:
 	IntroState() { }
 
@@ -43,6 +40,8 @@ private:
 	perdix::sprite* grass;
 	perdix::sprite* hero;
 	perdix::sprite* tree;
+
+	int UpTick;
 };
 	
 #endif

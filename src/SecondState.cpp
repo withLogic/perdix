@@ -8,6 +8,7 @@
 
 #include "core.h"
 #include "core_state.h"
+#include "IntroState.h"
 #include "SecondState.h"
 
 SecondState SecondState::m_SecondState;
@@ -29,6 +30,8 @@ void SecondState::Init(perdix::core* game)
 
 	this->water = new perdix::sprite;
 	this->water->loadImage("water.bmp");
+
+	this->UpTick = 0;
 
 	#ifdef _DEBUG
 		this->game->debugPrint("SecondState::Init(): Image 'WaterTile.bmp' has been loaded.", MSG_NORMAL);
@@ -93,7 +96,15 @@ void SecondState::HandleEvents()
 ///////////////////////////////////////////////////////////////
 void SecondState::Update() 
 {
+	if(this->UpTick >= 20){
+		this->game->popState();
+	};
 
+	this->UpTick++;
+
+	#ifdef _DEBUG
+		this->game->debugPrint("SecondState::Update(): Updating the scene.", MSG_DIAG);
+	#endif
 };
 
 ///////////////////////////////////////////////////////////////
@@ -114,6 +125,10 @@ void SecondState::Draw()
 			SDL_BlitSurface(this->water->getImage(), NULL, game->getScreen(), &_rect);
 		}
 	}
+
+	#ifdef _DEBUG
+		this->game->debugPrint("SecondState::Draw(): Drawing the scene.", MSG_DIAG);
+	#endif
 
 	SDL_Flip(game->getScreen());
 /* all of this is temp to show that the engine is working */

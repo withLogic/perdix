@@ -37,6 +37,8 @@ private:
 
 	perdix::core* game;
 	perdix::sprite* water;
+
+	int UpTick;
 };
 	
 #endif

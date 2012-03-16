@@ -9,6 +9,7 @@
 #include "core.h"
 #include "core_state.h"
 #include "IntroState.h"
+#include "SecondState.h"
 
 IntroState IntroState::m_IntroState;
 
@@ -48,6 +49,7 @@ void IntroState::Init(perdix::core* game)
 		#endif
 	}
 
+	this->UpTick = 0;
 
 	/* all of this is temp to show that the engine is working */
 
@@ -83,7 +85,9 @@ void IntroState::CleanUp()
 ///////////////////////////////////////////////////////////////
 void IntroState::Pause()
 {
-
+	#ifdef _DEBUG
+		this->game->debugPrint("IntroState::Pause(): Pausing the state.", MSG_ALERT);
+	#endif
 };
 
 ///////////////////////////////////////////////////////////////
@@ -94,7 +98,11 @@ void IntroState::Pause()
 ///////////////////////////////////////////////////////////////
 void IntroState::Resume()
 {
+	#ifdef _DEBUG
+		this->game->debugPrint("IntroState::Resume(): Resuming the state.", MSG_ALERT);
+	#endif
 
+	this->UpTick = 0;
 };
 
 ///////////////////////////////////////////////////////////////
@@ -129,6 +137,12 @@ void IntroState::HandleEvents()
 ///////////////////////////////////////////////////////////////
 void IntroState::Update() 
 {
+	if(this->UpTick >= 20){
+		this->game->pushState( SecondState::Instance() );
+	}
+
+	this->UpTick++;
+
 	#ifdef _DEBUG
 		this->game->debugPrint("IntroState::Update(): Updating the scene.", MSG_DIAG);
 	#endif
