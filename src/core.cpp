@@ -258,6 +258,14 @@ namespace perdix
 	void core::handleEvents(){
 		// -- NOTE --
 		// What do we need to do to let the engine handle its events.
+		// do we need to handle the events seperately, or should this be part of the update?
+		//
+		// The events we should handle:
+		//		keyboard
+		//		mouse
+		//		gamecontroller
+		//		collisions
+		
 		states.back()->HandleEvents();
 	}
 

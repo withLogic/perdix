@@ -17,7 +17,9 @@
 #ifdef _DEBUG
 	#include "core_win_console.h"
 #endif
+#include "core_actor.h"
 #include "core_state.h"
+#include "core_event.h"
 
 // all of the cores
 #include "core_os.h"
