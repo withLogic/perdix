@@ -1,1 +1,27 @@
-Sample changes to verfiy github.
+Perdix is a game engine designed to be highly portable and customizable.
+Designed from the ground up to be modular and not rely on any one platform or library.
+
+Planned features:
+  *  Modular design
+  *  Platform independent
+  *  Multi-library support (OpenGL vs DirectX)
+  *  Scripting support
+  *  Multiple language support
+  *  Independent compiler support
+  *  Fully documented code following JavaDoc conventions.
+  *  Standard variable and function names:
+
+Future features:
+  *  Multi-core support
+  *  Multi-threading support
+  *  Additional library supports (physics engines, ect)
+
+Possible platforms:
+  *  PC devices
+  *  Portable devices
+  *  Console devices
+
+If you have any questions or comments, please let me know.
+
+Matt
+matt@withlogic.com
