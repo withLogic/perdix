@@ -1,3 +1,10 @@
+/*
+==================================================================
+
+						Perdix - Core Event
+
+==================================================================
+*/
 
 #include "core.h"
 
@@ -5,17 +12,21 @@ namespace perdix
 {
 	///////////////////////////////////////////////////////////////
 	//
-	// event()
+	// core_event()
 	//		Constructor for the events manager.
 	//
 	///////////////////////////////////////////////////////////////
-	event::event(){
+	core_event::core_event(){
 		// start the event.
 		// create the base set of events
 		// -- DRAW
 		// -- STEP
 		// -- KeyUp
 		// -- KeyDown
+		this->addEventType("Draw");
+		this->addEventType("Step");
+		this->addEventType("KeyUp");
+		this->addEventType("KeyDown");
 	};
 
 	///////////////////////////////////////////////////////////////
@@ -24,7 +35,7 @@ namespace perdix
 	//		Destructor for the events manager.
 	//
 	///////////////////////////////////////////////////////////////
-	event::~event(){
+	core_event::~core_event(){
 		// destroy the event.
 	};
 	
@@ -34,7 +45,7 @@ namespace perdix
 	//		Initialization for the events manager.
 	//
 	///////////////////////////////////////////////////////////////
-	void event::init(){
+	void core_event::init(){
 		// init the event manager.
 	};
 	
@@ -44,7 +55,7 @@ namespace perdix
 	//		Clean up function for the events manager.
 	//
 	///////////////////////////////////////////////////////////////
-	void event::cleanUp(){
+	void core_event::cleanUp(){
 		// clean up the event manager.
 	};
 	
@@ -54,8 +65,13 @@ namespace perdix
 	//		Creates a new event type and adds it to the event manager.
 	//
 	///////////////////////////////////////////////////////////////
-	int event::addEventType(char* eventName){
-		// add another event to the event manager.
+	int core_event::addEventType(char* eventName){
+		// this should also log the index number (vectorLength++) 
+		// and the eventName into a lookup table.
+		int vectorLength = this->EventsForThisState.size();
+		this->EventsForThisState.push_back(ObjectsThemselves());
+		
+		return vectorLength++;
 	};
 	
 	///////////////////////////////////////////////////////////////
@@ -64,7 +80,7 @@ namespace perdix
 	//		Removes an event type from the event manager.
 	//
 	///////////////////////////////////////////////////////////////
-	void event::removeEventType(char* eventName){
+	void core_event::removeEventType(char* eventName){
 		// remove the event from the event manager.
 	};
 	
@@ -74,8 +90,9 @@ namespace perdix
 	//		Returns the ID of the event based on it's name.
 	//
 	///////////////////////////////////////////////////////////////
-	int event::lookupEventIdByName(char* eventName){
+	int core_event::lookupEventIdByName(char* eventName){
 		// return the ID of the event based on the name,
+		return 1;
 	};
 	
 	///////////////////////////////////////////////////////////////
@@ -84,8 +101,9 @@ namespace perdix
 	//		Returns the name of the Event of the event based on it's ID.
 	//
 	///////////////////////////////////////////////////////////////
-	char* event::lookupEventNameById(int eventId){
+	char* core_event::lookupEventNameById(int eventId){
 		// return the name of the event based on the ID.
+		return "nothing";
 	};
 	
 	///////////////////////////////////////////////////////////////
@@ -94,7 +112,7 @@ namespace perdix
 	//		Tells the objects of the Event ID to do their things
 	//
 	///////////////////////////////////////////////////////////////
-	void event::handleEvents(int eventId){
+	void core_event::handleEvents(int eventId){
 		// tell the registered objects to handle their shit.
 	};
 	
@@ -104,8 +122,9 @@ namespace perdix
 	//		Registers the ActorPointer to the EventID
 	//
 	///////////////////////////////////////////////////////////////
-	void event::registerActorToEvent(int eventId, core_actor* ActorPointer){
+	void core_event::registerActorToEvent(int eventId, core_actor* ActorPointer){
 		// register an actor to an event.
+		this->EventsForThisState[eventId].push_back(ActorPointer);
 	};
 	
 	///////////////////////////////////////////////////////////////
@@ -114,7 +133,7 @@ namespace perdix
 	//		UnRegisters the ActorPointer to the EventID
 	//
 	///////////////////////////////////////////////////////////////
-	void event::unregisterActorToEvent(int eventId, core_actor* ActorPointer){
+	void core_event::unregisterActorToEvent(int eventId, core_actor* ActorPointer){
 		// unregister an actor to an event.
 	};
 	
@@ -124,7 +143,7 @@ namespace perdix
 	//		UnRegisters all of the actors from the EventID
 	//
 	///////////////////////////////////////////////////////////////
-	void event::unregisterAllFromEvent(int eventId){
+	void core_event::unregisterAllFromEvent(int eventId){
 		// unregister all of the actors from the event.
 	};
 	

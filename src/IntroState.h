@@ -15,6 +15,17 @@
 
 class IntroState : public perdix::core_state
 {
+private:
+	static IntroState m_IntroState;
+	perdix::core* game;
+	perdix::core_event* eventManager;
+
+	perdix::sprite* grass;
+	perdix::sprite* hero;
+	perdix::sprite* tree;
+
+	int UpTick;
+
 public:
 	void Init(perdix::core* game);
 	void CleanUp();
@@ -32,16 +43,6 @@ public:
 
 protected:
 	IntroState() { }
-
-private:
-	static IntroState m_IntroState;
-	perdix::core* game;
-
-	perdix::sprite* grass;
-	perdix::sprite* hero;
-	perdix::sprite* tree;
-
-	int UpTick;
 };
 	
 #endif

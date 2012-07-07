@@ -28,8 +28,11 @@ namespace perdix
 
 		this->running = true;
 		this->paused = false;
+
 		this->graphics_core = new core_graphics;
 		this->os_core = new core_os;
+
+		this->argFullScreen = false;
 
 		frameCountCore = 0;
 		frameRateCore = 0;
@@ -96,7 +99,7 @@ namespace perdix
 
 	///////////////////////////////////////////////////////////////
 	//
-	// init(int width, int height, int depth, bool fullscreen)
+	// init(bool fullscreen)
 	//		The initialization function for the core. 
 	//
 	///////////////////////////////////////////////////////////////
@@ -155,11 +158,11 @@ namespace perdix
 		while (it != argv.end()){
 			if(*it == "--fullscreen" || *it == "-f")
 			{
-				//This will make the game start in fullscreen mode!
+				this->argFullScreen = true;
 			}
 			else if(*it == "--window" || *it == "-w")
 			{
-				//This will make the game start in windowed mode!
+				this->argFullScreen = false;
 			}
 			it++;
 		};
@@ -287,7 +290,7 @@ namespace perdix
 		states.back()->Update();
 
 		if(!timedUpdate.stopwatch(14)){
-			SDL_Delay(1);
+			timedUpdate.sleep(1);
 		} else {
 			frameCountReal++;
 			if(this->realTimer.stopwatch(999)){
@@ -297,7 +300,7 @@ namespace perdix
 		};
 
 		char buff[100];
-		sprintf(buff, "%s - Real: %d Core: %d", "Perdix - ", frameRateReal, frameRateCore);
+		sprintf(buff, "%s - Real: %d Core: %d", APP_NAME, frameRateReal, frameRateCore);
 
 		this->setTitle(buff);
 
@@ -310,7 +313,6 @@ namespace perdix
 	//
 	///////////////////////////////////////////////////////////////
 	void core::draw(){
-		// do nothing
 		states.back()->Draw();
 	}
 

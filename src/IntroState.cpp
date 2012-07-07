@@ -11,6 +11,8 @@
 #include "IntroState.h"
 #include "SecondState.h"
 
+#include "actor_hero.h"
+
 IntroState IntroState::m_IntroState;
 
 ///////////////////////////////////////////////////////////////
@@ -22,6 +24,12 @@ IntroState IntroState::m_IntroState;
 void IntroState::Init(perdix::core* game)
 {
 	this->game = game;
+	this->eventManager = new perdix::core_event;
+
+	actor_hero* hero;
+	hero = new actor_hero(this);
+
+	this->eventManager->registerActorToEvent(0,hero);
 
 	/* all of this is temp to show that the engine is working */
 	#ifdef _DEBUG
@@ -131,7 +139,7 @@ void IntroState::HandleEvents()
 	};
 
 	#ifdef _DEBUG
-		this->game->debugPrint("IntroState::HandleEvents(): Handling of the events.", MSG_DIAG);
+		//this->game->debugPrint("IntroState::HandleEvents(): Handling of the events.", MSG_DIAG);
 	#endif
 
 };
@@ -144,14 +152,14 @@ void IntroState::HandleEvents()
 void IntroState::Update() 
 {
 
-	//if(this->UpTick >= 200){
-		//this->game->pushState( SecondState::Instance() );
-	//}
-	//this->UpTick++;
+	if(this->UpTick >= 500){
+		this->game->pushState( SecondState::Instance() );
+	}
+	this->UpTick++;
 	
 
 	#ifdef _DEBUG
-		this->game->debugPrint("IntroState::Update(): Updating the scene.", MSG_DIAG);
+		//this->game->debugPrint("IntroState::Update(): Updating the scene.", MSG_DIAG);
 	#endif
 };
 
@@ -171,6 +179,7 @@ void IntroState::Draw()
 	SDL_Rect _tree3;
 	SDL_Rect _tree4;
 
+	
 	for (int x = 0; x < game->getWindowWidth() / this->grass->getWidth(); x++) {
 		for (int y = 0; y < game->getWindowHeight() / this->grass->getHeight(); y++) {
 			_rect.x = x * this->grass->getWidth();
@@ -178,11 +187,13 @@ void IntroState::Draw()
 			SDL_BlitSurface(this->grass->getImage(), NULL, game->getScreen(), &_rect);
 		}
 	}
+	
 
 	_rect.x = 0;
 	_rect.y = 0;
 	SDL_BlitSurface(this->grass->getImage(), NULL, game->getScreen(), &_rect);
 
+	
 	_rect2.x = 32;
 	_rect2.y = 32;
 	SDL_BlitSurface(this->hero->getImage(), NULL, game->getScreen(), &_rect2);
@@ -203,8 +214,9 @@ void IntroState::Draw()
 	_tree4.y = 300;
 	SDL_BlitSurface(this->tree->getImage(), NULL, game->getScreen(), &_tree4);
 
+
 	#ifdef _DEBUG
-		this->game->debugPrint("IntroState::Draw(): Drawing the scene.", MSG_DIAG);
+		//this->game->debugPrint("IntroState::Draw(): Drawing the scene.", MSG_DIAG);
 	#endif
 
 	SDL_Flip(game->getScreen());

@@ -86,7 +86,23 @@ void SecondState::Resume()
 ///////////////////////////////////////////////////////////////
 void SecondState::HandleEvents()
 {
+	SDL_Event keyevent;
 
+	while(SDL_PollEvent(&keyevent))
+	{
+		switch (keyevent.type)
+		{
+			case SDL_QUIT:
+				game->quit();
+				break;
+			case SDL_KEYDOWN:
+				 switch(keyevent.key.keysym.sym){
+					case SDLK_ESCAPE:
+						this->game->quit();
+						break;
+				};
+		};
+	};
 };
 
 ///////////////////////////////////////////////////////////////
@@ -96,14 +112,14 @@ void SecondState::HandleEvents()
 ///////////////////////////////////////////////////////////////
 void SecondState::Update() 
 {
-	if(this->UpTick >= 250){
+	if(this->UpTick >= 600){
 		this->game->popState();
 	};
 
 	this->UpTick++;
 
 	#ifdef _DEBUG
-		this->game->debugPrint("SecondState::Update(): Updating the scene.", MSG_DIAG);
+		//this->game->debugPrint("SecondState::Update(): Updating the scene.", MSG_DIAG);
 	#endif
 };
 
@@ -127,7 +143,7 @@ void SecondState::Draw()
 	}
 
 	#ifdef _DEBUG
-		this->game->debugPrint("SecondState::Draw(): Drawing the scene.", MSG_DIAG);
+		//this->game->debugPrint("SecondState::Draw(): Drawing the scene.", MSG_DIAG);
 	#endif
 
 	SDL_Flip(game->getScreen());

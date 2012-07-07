@@ -18,8 +18,8 @@
 	#include "core_win_console.h"
 #endif
 #include "core_actor.h"
-#include "core_state.h"
 #include "core_event.h"
+#include "core_state.h"
 
 // all of the cores
 #include "core_os.h"
@@ -84,6 +84,7 @@ namespace perdix
 		bool init(bool fullscreen);
 
 		void handleArgs(int argc, char* args[]);
+		bool argFullScreen;
 
 		bool cleanUp();
 	
