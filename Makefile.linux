@@ -1,4 +1,4 @@
-TARGET		:=	nessy-linux
+TARGET		:=	perdix-linux
 TARGETDIR   	:=  	executables
 BUILD		:=	build_linux
 SOURCES := $(wildcard src/*.cpp)
@@ -8,7 +8,7 @@ CFLAGS = -Wall -g `sdl-config --cflags`
 CXXFLAGS	= $(CFLAGS)
 LDFLAGS=`sdl-config --libs` 
 
-LIBS	:= -libstdc++ -lSDL -lSDL_mixer -lSDL_image
+LIBS	:= -lstdc++ -lSDLmain -lSDL -lSDL_mixer -lSDL_image
 
 SOURCES := $(wildcard src/*.cpp) 
 OBJECTS := $(SOURCES:.cpp=.o)
@@ -28,5 +28,5 @@ $(OUTPUT): $(OBJECTS)
 	$(LD) $(CFLAGS) -c -o $@ $<
  
 clean:
-	rm $(OBJECTS) $(TARGET)
+	rm $(OBJECTS) $(TARGET) -f
 #----------------------------------------------------------------------------------------------------------- 
